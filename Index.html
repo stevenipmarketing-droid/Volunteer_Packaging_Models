@@ -24,12 +24,25 @@
   </style>
 </head>
 <body>
-  <model-viewer
-    src="Phone_Box_TESTER_1028200216_texture.glb"
+  <model-viewer id="viewer"
     alt="Volunteer Packaging Model"
     auto-rotate
     camera-controls
     shadow-intensity="1">
   </model-viewer>
+
+  <script>
+    async function loadModel() {
+      // fetch the model as a blob
+      const response = await fetch('Phone_Box_TESTER_1028200216_texture.glb');
+      const blob = await response.blob();
+
+      // convert it to a local object URL and apply it to model-viewer
+      const url = URL.createObjectURL(blob);
+      document.getElementById('viewer').src = url;
+    }
+
+    loadModel();
+  </script>
 </body>
 </html>
